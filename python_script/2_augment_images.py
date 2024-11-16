@@ -15,7 +15,7 @@ input_folders = {
     "1": "_preprocessed_datasets_origin/",  # Kaggle 다운로드 후 압축 푼 폴더
     "2": "_preprocessed_datasets_del_aug_duplicate/",  # 1번에서 중복 및 강화된 이미지 제거
     "3": "_preprocessed_datasets_no_watermark/",  # 2번에서 워터마크 제거
-    "4": "_preprocessed_datasets_no_group/",  # 2번에서 집단 해파리 이미지 제거
+    "4": "_preprocessed_datasets_no_multi/",  # 2번에서 집단 해파리 이미지 제거
     "5": "_preprocessed_datasets_no_obstacle/",  # 2번에서 방해물 제거
 }
 

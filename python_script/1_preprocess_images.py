@@ -8,7 +8,7 @@ input_folders = {
     "2": "datasets_del_aug_duplicate/",
     # TODO: 나중에 3,4,5도 사용하게 된다면, 1번이 아닌 2번 기준으로 작업해야 함.
     "3": "datasets_no_watermark/",
-    "4": "datasets_no_group,/",
+    "4": "datasets_no_multi/",
     "5": "datasets_no_obstacle/",
 }
 
