@@ -12,25 +12,31 @@ input_folders = {
     "5": "datasets_no_obstacle/",
 }
 
+# 폴더 설정
+# 입력 폴더 경로 지정 및 받아오기
 input_folder = get_input_folder(input_folders)
-output_folder = os.path.join(
+
+# 출력 폴더 경로 지정
+output_folder = os.path.join( 
     get_project_root(),
     f"_preprocessed_{os.path.basename(input_folder.strip('/'))}",
 )
-os.makedirs(output_folder, exist_ok=True)
+os.makedirs(output_folder, exist_ok=True)  # 지정된 폴더가 없다면 mkdir로 생성
 
-target_size = (224, 224)
+target_size = (224, 224)  # 목표 이미지 크기
 
+# 입력 폴더 유효성 검사
 if not os.path.exists(input_folder):
     raise FileNotFoundError(f"Input folder does not exist: {input_folder}")
 
-for root, _, files in os.walk(input_folder):
+# 이미지 파일 처리
+for root, _, files in os.walk(input_folder):  # os.walk() 폴더 내의 모든 파일 탐색
     for filename in files:
-        if is_image_file(filename):
+        if is_image_file(filename):  # 파일명(확장자)을 확인하여 이미지 파일인지 확인
             filepath = os.path.join(root, filename)
             try:
                 with Image.open(filepath) as img:
-                    img = convert_to_rgb(img)
+                    img = convert_to_rgb(img)  # 이미지를 RGB형식으로 변환
                     if img.size != target_size:
                         img = img.resize(target_size)
                     relative_path = os.path.relpath(root, input_folder)
@@ -40,7 +46,7 @@ for root, _, files in os.walk(input_folder):
                     output_filepath = os.path.join(
                         new_folder_path, new_filename
                     )
-                    img.save(output_filepath, format="JPEG")
+                    img.save(output_filepath, format="JPEG")  # 이미지 확장자명을 .jpeg로 변환
                     print(f"전처리 후 저장 완료: {output_filepath}")
             except Exception as e:
                 print(f"Failed to process {filepath}: {e}")
